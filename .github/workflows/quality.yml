@@ -1,0 +1,41 @@
+name: Documentation and read-only tool validation
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Python unit tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Python syntax
+        run: |
+          python3 -m py_compile scripts/preset-audit.py
+          python3 -m py_compile scripts/check-doc-links.py
+      - name: Bash syntax
+        run: |
+          bash -n scripts/read-only-baseline.sh
+          bash -n scripts/smoke-check.sh
+      - name: Local Markdown links
+        run: python3 scripts/check-doc-links.py
+      - name: Preset audit sanity tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/preset-audit.py tests/fixtures/preset-safe.txt
+          if python3 scripts/preset-audit.py tests/fixtures/preset-unsafe.txt; then
+            echo "Critical-label preset should have failed" >&2
+            exit 1
+          fi
+      - name: Ensure sensitive artifacts are not tracked
+        run: |
+          if git ls-files | grep -Ei '(^|/)(\.env|.*\.pem|.*\.key|.*baseline.*\.txt|.*token.*|.*secret.*)$'; then
+            echo "Potential sensitive file tracked" >&2
+            exit 1
+          fi

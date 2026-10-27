@@ -1,0 +1,9 @@
+.DS_Store
+.env
+.env.*
+*.key
+*.pem
+*secret*
+*token*
+*baseline*.txt
+benchmarks/private/
