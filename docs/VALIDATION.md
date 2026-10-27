@@ -1,22 +1,16 @@
-# Validation matrix
+# Validation entrypoint
 
-No collected results yet; do not claim measured gains.
+The authoritative current benchmark protocol is [BENCHMARKS.md](BENCHMARKS.md). Current OS readiness is [COMPATIBILITY.md](COMPATIBILITY.md).
 
-Configurations: A=stock, B=selective RemoveMacAI, C=balanced/SIP on, D=custom balanced/SIP off (separate experimental track).
+**As of 2026-10-27: no verified A/B results or SIP-off hardware validation.**
 
-Record Mac model/chip/RAM, macOS build, tool commit, SIP state, brightness, power settings, ambient temperature, active apps and battery cycle count.
+Before publishing a stable setup, require:
+- [ ] Exact macOS version/build and upstream Git SHAs pinned.
+- [ ] Apple Silicon M4 installation, hardware and update tests pass.
+- [ ] Three repeated tests per battery, sleep and responsiveness workload; stock and after changes, same macOS build.
+- [ ] Native 80% charge limit demonstrably functions across restart.
+- [ ] Apple Account, App Store, Find My, Software Update, Spotlight, AirDrop, Wi-Fi, Bluetooth, audio, camera, VPN, Time Machine and USB-C pass.
+- [ ] Tool rollback and SIP-on restoration pass.
+- [ ] At least one independent reproduction before broad stable claim.
 
-| Test (three trials each) | A | B | C | D |
-|---|---|---|---|---|
-| 2-hour browsing battery drain (%) | TBD | TBD | TBD | TBD |
-| 2-hour coding/cloud CLI drain (%) | TBD | TBD | TBD | TBD |
-| 8-hour lid-closed sleep drain (%) | TBD | TBD | TBD | TBD |
-| RAM pressure, swap, idle CPU | TBD | TBD | TBD | TBD |
-| Free storage | TBD | TBD | TBD | TBD |
-| Apple ID, App Store, Software Update | TBD | TBD | TBD | TBD |
-| Spotlight, Wi-Fi, Bluetooth, VPN | TBD | TBD | TBD | TBD |
-| Camera/audio, AirDrop/Continuity | TBD | TBD | TBD | TBD |
-| Native charge limit, sleep/wake | TBD | TBD | TBD | TBD |
-| Rollback verified | TBD | TBD | TBD | TBD |
-
-Wait for background indexing to settle after OS setup. Keep identical OS build per A/B comparison. Report every regression and rollback outcome. Never publish sensitive logs.
+Publishing a draft with clear warnings is permitted; it is not a stable installation endorsement.
