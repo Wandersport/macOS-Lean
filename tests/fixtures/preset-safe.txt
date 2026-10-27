@@ -1,0 +1,3 @@
+# Example to test audit only; NOT a validated preset
+com.apple.adprivacyd
+com.apple.tipsd
