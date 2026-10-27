@@ -1,0 +1,2 @@
+# Example of a label that should be flagged (do NOT apply)
+com.apple.powerlogHelperd
