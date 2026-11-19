@@ -8,6 +8,12 @@ macOS Lean helps Apple Silicon owners start from clean macOS, make informed opti
 
 [**Start: Complete installation guide**](docs/INSTALLATION.md) · [**All optimization options**](docs/OPTIMIZATIONS.md) · [**Debloat procedure**](docs/DEBLOAT.md) · [**Recovery**](docs/RECOVERY.md)
 
+## Optional: ultra-dim MacBook keyboard backlight
+
+The [macOS Keyboard Glow helper](tools/keyboard-glow/README.md) combines **Lowlight** for below-minimum backlight brightness and **mac-brightnessctl** for a configurable **2-second idle timeout**. It includes a transparent setup script, read-only status check, first-run preference backup, rollback and CI tests. No SIP disablement or extra background daemon is required.
+
+**Compatibility caveat:** Lowlight's ultra-low setting works on the reported M4 Air and the 2-second timeout reads back correctly, but their **combined physical off-after-2-seconds behaviour has not yet been verified**. See the [keyboard backlight guide](docs/KEYBOARD-BACKLIGHT.md) and test before relying on it.
+
 ## Choose your profile
 
 | Profile | SIP | Suitable for | State |
