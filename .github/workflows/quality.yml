@@ -22,6 +22,9 @@ jobs:
         run: |
           bash -n scripts/read-only-baseline.sh
           bash -n scripts/smoke-check.sh
+          for script in tools/keyboard-glow/*.sh tools/keyboard-glow/tests/*.sh; do bash -n "$script"; done
+      - name: Keyboard Glow mocked install and rollback
+        run: bash tools/keyboard-glow/tests/test_setup.sh
       - name: Local Markdown links
         run: python3 scripts/check-doc-links.py
       - name: Preset audit sanity tests
